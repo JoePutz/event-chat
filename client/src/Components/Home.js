@@ -11,6 +11,9 @@ function Home() {
             <nav>
                 <Link to="create-event">to create an event</Link>
             </nav>
+            <nav>
+                <Link to="login">to login</Link>
+            </nav>
         </>
     )
 }
