@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 const UserContext = React.createContext()
 
 const UserProvider = ({children}) => {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(false)
     useEffect(() => {
         fetch("/me")
         .then((r) => {
