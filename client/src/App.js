@@ -11,9 +11,10 @@ function App() {
 
   return (
     <>
-    <NavBar />
+    
     <UserProvider>
     <BrowserRouter>
+    <NavBar />
       <Routes>
         
         <Route path="/" element={<Home />} />

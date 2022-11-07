@@ -8,6 +8,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { NavLink, Link } from "react-router-dom";
+import {useContext} from "react";
+import {UserContext} from "../Context/User"
 
 
 //drawer elements used
@@ -28,9 +30,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Button from "@mui/material/Button";
 
 
-function NavBar({ user, doLogout }) {
+function NavBar({  }) {
   //react useState hook to save the current open/close state of the drawer, normally variables dissapear afte the function was executed
   const [open, setState] = useState(false);
+  const {user, logout} = useContext(UserContext)
+
 
   //function that is being called every time the drawer should open or close, the keys tab and shift are excluded so the user can focus between the elements with the keys
   const toggleDrawer = (open) => (event) => {
@@ -45,9 +49,7 @@ function NavBar({ user, doLogout }) {
   };
 
   function handleLogout() {
-    fetch("/logout", {
-      method: "DELETE",
-    }).then(() => doLogout());
+    logout()
 }
 
   return (
