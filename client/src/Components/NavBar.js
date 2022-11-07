@@ -138,7 +138,7 @@ function NavBar({  }) {
                     sx={{ mb: 1, width: 1 }} 
                     startIcon={<CircleIcon sx={{ color: "#2d433c" }} />}
                     >
-                    ONGOING EVENTS
+                    CREATE AN EVENT
                   </Button>
                 </NavLink>
 
