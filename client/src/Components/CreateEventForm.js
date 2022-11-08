@@ -1,4 +1,5 @@
-import { Grid, TextField, Box, Typography, styled, Paper, Div } from '@material-ui/core';
+import { Grid, TextField, Box, styled} from '@material-ui/core';
+import {ToggleButton, ToggleButtonGroup} from '@material-ui/lab'
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { useState } from 'react';
@@ -9,8 +10,11 @@ export default function CreateEventForm() {
         backgroundColor: 'rgb(94 105 114)',
         padding: theme.spacing(1),
       }));
-    const formData = useState({name: '', description:''})
-
+    const [formData, setFormData] = useState({name: '', description:'', public:'public'})
+    const handleButtonToggle = (e, newAlignment) => {
+        console.log(newAlignment)
+        setFormData({...formData, ['public']: newAlignment})
+    }
   return (
     
     <>
@@ -28,7 +32,10 @@ export default function CreateEventForm() {
                 <TextField label="Description" variant="standard" multiline maxRows={4}value={formData.description}/>
             </Grid>
             <Grid item xs={12} style={{marginBottom: '5%'}}>
-                <TextField label="Standard" variant="standard" />
+                <ToggleButtonGroup value = {formData.public} onChange={handleButtonToggle} color="primary" exclusive aria-label="Platform">
+                    <ToggleButton value='public'>Public</ToggleButton>
+                    <ToggleButton value='private'>Private</ToggleButton>
+                </ToggleButtonGroup>
             </Grid>
             <Grid item xs={12} style={{marginBottom: '5%'}}>
                 <TextField label="Standard" variant="standard" />
