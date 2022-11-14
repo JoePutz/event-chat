@@ -1,13 +1,35 @@
 import { Grid, Box, Paper, styled, createTheme} from "@material-ui/core"
 import { Link } from "react-router-dom"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AgoraRTC from "agora-rtc-sdk-ng";
 import { Button } from "@material-ui/core";
 import VideoCall from "./VideoCall";
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 function EventPage () {
     const [inCall, setInCall] = useState(false);
+    const [ event, setEvent ] = useState([])
+    let { id } = useParams();
+    const [ refresh, setRefresh ] = useState(false)
+
+    useEffect(() => {
+        fetch(`/events/${id}`)
+          .then((response) => response.json())
+          .then((data) => setEvent(data));
+    }, [refresh]);
+
+    function handleCommentDelete(commentID) {
+        fetch(`/comments/${commentID}`,{
+            method: "DELETE"
+       })
+       .then(()=> setRefresh(!refresh))
+    }
+
+    function handleReplyClick(commentID) {
+        //I'm thinking we place an @comment.user automatically to the front of where you type your comments?
+    }
+
     // const darkTheme = createTheme({
     //     palette: {
     //         mode: 'dark',
